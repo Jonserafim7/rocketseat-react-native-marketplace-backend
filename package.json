@@ -7,8 +7,8 @@
     "dev": "tsx watch src/server.ts",
     "start": "ts-node src/index.ts",
     "typeorm": "typeorm-ts-node-commonjs",
-    "migration:run": "yarn typeorm migration:run -- -d src/infra/database/typeorm/market-place/data-source.ts",
-    "migration:revert": "yarn typeorm migration:revert -- -d src/database/typeorm/market-place/data-source.ts"
+    "migration:run": "npm run typeorm migration:run -- -d src/infra/database/typeorm/market-place/data-source.ts",
+    "migration:revert": "npm run typeorm migration:revert -- -d src/infra/database/typeorm/market-place/data-source.ts"
   },
   "keywords": [],
   "author": "",
