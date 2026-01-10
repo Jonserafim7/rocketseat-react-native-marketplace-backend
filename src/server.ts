@@ -6,14 +6,19 @@ import * as Database from "./infra/database/";
 import * as Cors from "./infra/web/config/cors";
 import * as Schema from "./infra/web/config/schema";
 import * as ErrorHandler from "./infra/web/config/error-handler";
+import * as Logger from "./infra/web/config/logger";
 import fastifyStatic from "@fastify/static";
 import path = require("path");
 import fastifyMultipart from "@fastify/multipart";
 
 (async () => {
-  const app = fastify();
+  const app = fastify({
+    logger: Logger.createLoggerOptions(),
+  });
 
   ErrorHandler.configure(app);
+
+  Logger.configure(app);
 
   Schema.configure(app);
 
@@ -39,6 +44,7 @@ import fastifyMultipart from "@fastify/multipart";
   app.listen(
     {
       port: 3001,
+      host: "0.0.0.0",
     },
     () => {
       console.log("Api rodando na porta 3001");

@@ -15,7 +15,13 @@ export const configure = (fastify: FastifyInstance) => {
       (error instanceof AppError && error.getShouldPrintInConsole()) ||
       !(error instanceof AppError)
     ) {
-      console.error("", error);
+      fastify.log.error(
+        {
+          err: error,
+          errorType: error.constructor.name,
+        },
+        "Error occurred during request processing"
+      );
     }
 
     if (error instanceof HttpError) {
